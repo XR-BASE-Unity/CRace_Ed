@@ -38,6 +38,18 @@ public class PlayerController : MonoBehaviour
         {
             gameObject.transform.Rotate(new Vector3(0f, Time.deltaTime * angle, 0f));
         }
+
+        if (Input.GetKey(KeyCode.UpArrow))
+        {
+            posOffset += new Vector3(0f, 0f, Time.deltaTime * speed);
+
+        }
+        if (Input.GetKey(KeyCode.DownArrow))
+        {
+            posOffset += new Vector3(0f, 0f, -Time.deltaTime * speed);
+        }
+
+
         gameObject.transform.position = posOffset;
         gameObject.transform.Rotate(rotOffset);
     }
