@@ -10,4 +10,9 @@ public class StartGame : MonoBehaviour
         SceneManager.LoadScene(1);
         Debug.Log("pressed");
     }
+    public void ExitPressed()
+    {
+        Application.Quit();
+        Debug.Log("pressed");
+    }
 }
