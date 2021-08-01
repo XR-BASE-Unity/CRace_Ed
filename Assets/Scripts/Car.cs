@@ -46,7 +46,7 @@ public class Car : MonoBehaviour
         wheelColliderRearRight.motorTorque = Input.GetAxis("Vertical") * motorTorque;
         wheelColliderFrontLeft.motorTorque = Input.GetAxis("Vertical") * motorTorque;
         wheelColliderFrontRight.motorTorque = Input.GetAxis("Vertical") * motorTorque;
-        Debug.Log(wheelColliderFrontLeft.motorTorque); 
+
         engineSound.pitch = 1f + 1.5f * wheelColliderRearLeft.motorTorque/motorTorque;
 
     }
@@ -71,7 +71,7 @@ public class Car : MonoBehaviour
                 brakeLeft.Play();
                 brakeRight.Play();
             }
-            Debug.Log("Lights On Back");
+
         }
         if (Input.GetButtonUp("Jump"))
         {
@@ -92,7 +92,7 @@ public class Car : MonoBehaviour
                 rightSmall.intensity = 1;
             }
             
-            Debug.Log("Lights off Back");
+
             return;
         }
         if (Input.GetKeyDown(KeyCode.L))
@@ -106,7 +106,6 @@ public class Car : MonoBehaviour
                 rightBig.intensity = 1;
                 rightSmall.intensity = 1;
 
-                Debug.Log("front lights true");
                 return;
             }
             if (frontL.intensity > 0)
@@ -117,7 +116,7 @@ public class Car : MonoBehaviour
                 leftBig.intensity = 0;
                 rightBig.intensity = 0;
                 rightSmall.intensity = 0;
-                Debug.Log("front lights false");
+
                 return;
             }
 
