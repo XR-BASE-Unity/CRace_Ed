@@ -4,53 +4,33 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed;
-    public float angle;
-    void Start()
+    public float BestLapTime { get; private set; } = Mathf.Infinity;
+    public float LastLapTime { get; private set; } = 0;
+    public float CurrentLapTime { get; private set; } = 0;
+    public int CurrentLap { get; private set; } = 0;
+
+    private float lapTimerTimestamp;
+    private int lastCheckpoint = 0;
+
+    private Transform checkpointsParent;
+    private int checkpointCount;
+    private int checkpointLayer;
+
+    private void Awake()
     {
-        
+        checkpointsParent = GameObject.Find("Checkpoints").transform;
+        checkpointCount = checkpointsParent.childCount;
+        checkpointLayer = LayerMask.NameToLayer("Chekpoint");
+    }
+   void StartLap()
+    {
+        CurrentLap++;
+        lastCheckpoint = 1;
+        lapTimerTimestamp = Time.time;
     }
 
     void Update()
     {
-        Vector3 posOffset = gameObject.transform.position;
-        Vector3 rotOffset = Vector3.zero;
-        // Time.deltaTime
-        if (Input.GetKey(KeyCode.W)) 
-        {
-            posOffset += new Vector3(0f, 0f, Time.deltaTime * speed);
-            
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            posOffset -= new Vector3(0f, 0f, Time.deltaTime * speed);
-        }
-
-        gameObject.transform.position = posOffset;
-
-        if (Input.GetKey(KeyCode.A))
-
-        {
-            gameObject.transform.Rotate(new Vector3(0f, -Time.deltaTime * angle, 0f));
-        }
-        if (Input.GetKey(KeyCode.D))
-
-        {
-            gameObject.transform.Rotate(new Vector3(0f, Time.deltaTime * angle, 0f));
-        }
-
-        if (Input.GetKey(KeyCode.UpArrow))
-        {
-            posOffset += new Vector3(0f, 0f, Time.deltaTime * speed);
-
-        }
-        if (Input.GetKey(KeyCode.DownArrow))
-        {
-            posOffset += new Vector3(0f, 0f, -Time.deltaTime * speed);
-        }
-
-
-        gameObject.transform.position = posOffset;
-        gameObject.transform.Rotate(rotOffset);
+        CurrentLapTime = lapTimerTimestamp > 0 ? Time.time - lapTimerTimestamp : 0;
     }
 }
