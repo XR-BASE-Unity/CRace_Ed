@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Car : MonoBehaviour
 {
@@ -53,6 +54,10 @@ public class Car : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene(0);
+        }
         wheelColliderFrontRight.steerAngle = Input.GetAxis("Horizontal") * maxSteer;
         wheelColliderFrontLeft.steerAngle = Input.GetAxis("Horizontal") * maxSteer;
     
